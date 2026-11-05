@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Công cụ Chuẩn hóa HTML Văn bản Pháp luật (Hỗ trợ Up File Word)</title>
+  <!-- Thêm thư viện mammoth.js từ CDN để đọc file .docx trực tiếp trên trình duyệt -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <style>
+    :root {
+      --primary: #0c3559;
+      --primary-hover: #08233b;
+      --accent: #d97706;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --border: #cbd5e1;
+      --text: #0f172a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: text !important; -webkit-user-select: text !important; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+      line-height: 1.5;
+    }
+    .app-container { max-width: 1400px; margin: 0 auto; }
+    .app-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 24px;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid var(--accent);
+    }
+    .app-header h1 { font-size: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .app-header span { font-size: 13px; color: #cbd5e1; }
+
+    .meta-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 16px 24px;
+      margin-bottom: 16px;
+      border-radius: 0 0 8px 8px;
+    }
+    .meta-toggle {
+      font-weight: 700;
+      color: var(--primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      margin-bottom: 12px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 992px) { .meta-grid { grid-template-columns: repeat(2, 1fr); } }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-group label { font-size: 12.5px; font-weight: 600; color: #475569; }
+    .form-group input, .form-group select {
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .toolbar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .options-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .options-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .btn {
+      padding: 9px 18px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-accent { background: #15803d; color: #fff; }
+    .btn-accent:hover { background: #166534; }
+    .btn-outline { background: #f8fafc; border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { background: #e2e8f0; }
+
+    /* Upload box styling */
+    .upload-box {
+      background: #eff6ff;
+      border: 2px dashed #3b82f6;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .upload-box label {
+      font-weight: 600;
+      color: #1e40af;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .upload-box input[type="file"] {
+      display: none;
+    }
+    .file-name-display {
+      font-size: 13.5px;
+      color: #475569;
+      font-style: italic;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 992px) { .workspace { grid-template-columns: 1fr; } }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      height: 620px;
+      overflow: hidden;
+    }
+    .panel-header {
+      background: #f8fafc;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--primary);
+    }
+    .editor-area {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      outline: none;
+      font-size: 14.5px;
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+    #input-box { background: #fff; }
+    #input-box:empty:before {
+      content: attr(data-placeholder);
+      color: #94a3b8;
+    }
+    #output-code {
+      width: 100%;
+      height: 100%;
+      border: none;
+      resize: none;
+      padding: 16px;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: 13.5px;
+      background: #0f172a;
+      color: #e2e8f0;
+      outline: none;
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+
+    #output-preview { display: none; padding: 20px; line-height: 1.75; }
+    #output-preview h2 {
+      color: #0c3559;
+      font-size: 18px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin: 20px 0 10px;
+      text-transform: uppercase;
+    }
+    #output-preview h3 { color: #0c3559; font-size: 16.5px; margin: 16px 0 8px; }
+    #output-preview h4 { color: #0c3559; font-size: 15.5px; margin: 14px 0 6px; }
+    #output-preview table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 14px; }
+    #output-preview th, #output-preview td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; }
+    #output-preview th { background: #f1f5f9; width: 22%; }
+
+    .doc-meta-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .doc-meta-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 14.5px;
+    }
+    .doc-meta-row:last-child { border-bottom: none; }
+    .doc-meta-label { font-weight: 600; color: #475569; flex: 0 0 35%; }
+    .doc-meta-value { color: #0f172a; flex: 0 0 65%; text-align: right; word-break: break-word; }
+    @media (max-width: 768px) {
+      .doc-meta-row { flex-direction: column; gap: 4px; padding: 10px 0; }
+      .doc-meta-label, .doc-meta-value { flex: 0 0 100%; text-align: left; }
+      .doc-meta-label { font-size: 13px; color: #0c3559; text-transform: uppercase; }
+    }
+
+    .badge-stat {
+      font-size: 12px;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <header class="app-header">
+    <div>
+      <h1>Công cụ Chuẩn hóa HTML Văn bản Pháp luật</h1>
+      <span>Hỗ trợ tải lên file Word (.docx), không giới hạn ký tự, giữ nguyên định dạng &amp; canh lề</span>
+    </div>
+    <span class="badge-stat" id="stat-counter">Sẵn sàng xử lý</span>
+  </header>
+
+  <section class="meta-panel">
+    <div class="meta-toggle">
+      <input type="checkbox" id="include-meta" checked>
+      <label for="include-meta" style="cursor:pointer;">Tự động chèn khối Thông tin văn bản (Thẻ Div)</label>
+    </div>
+    <div class="meta-grid" id="meta-fields">
+      <div class="form-group">
+        <label>Số hiệu văn bản:</label>
+        <input type="text" id="m-sohieu" placeholder="VD: 38/2015/TT-BTC">
+      </div>
+      <div class="form-group">
+        <label>Loại văn bản:</label>
+        <select id="m-loai">
+          <option value="Thông tư">Thông tư</option>
+          <option value="Nghị định">Nghị định</option>
+          <option value="Luật">Luật</option>
+          <option value="Quyết định">Quyết định</option>
+          <option value="Công văn">Công văn</option>
+          <option value="Văn bản hợp nhất">Văn bản hợp nhất</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ngày ban hành:</label>
+        <input type="text" id="m-ngaybh" placeholder="VD: 25/03/2015">
+      </div>
+      <div class="form-group">
+        <label>Ngày có hiệu lực:</label>
+        <input type="text" id="m-ngayhl" placeholder="VD: 01/04/2015">
+      </div>
+      <div class="form-group">
+        <label>Ngày hết hiệu lực:</label>
+        <input type="text" id="m-ngayhh" placeholder="VD: Trống hoặc cụ thể">
+      </div>
+      <div class="form-group">
+        <label>Cơ quan ban hành:</label>
+        <input type="text" id="m-coquan" placeholder="VD: Bộ Tài chính">
+      </div>
+      <div class="form-group" style="grid-column: span 2;">
+        <label>Người ký:</label>
+        <input type="text" id="m-nguoiky" placeholder="VD: Đỗ Hoàng Anh Tuấn">
+      </div>
+    </div>
+  </section>
+
+  <section class="toolbar">
+    <div class="options-group">
+      <label><input type="checkbox" id="opt-merge-lines"> Gộp dòng ngắt ngang (PDF)</label>
+      <label><input type="checkbox" id="opt-bold-clause" checked> In đậm Khoản (1., 2.) &amp; Điểm (a, b)</label>
+      <label><input type="checkbox" id="opt-remove-header" checked> Bỏ Quốc hiệu / Tiêu ngữ</label>
+    </div>
+    <div style="display:flex; gap: 10px;">
+      <button class="btn btn-outline" id="btn-clear" type="button">Xóa trắng</button>
+      <button class="btn btn-primary" id="btn-process" type="button">⚡ Chuẩn hóa HTML</button>
+      <button class="btn btn-accent" id="btn-copy" type="button">Sao chép tất cả</button>
+    </div>
+  </section>
+
+  <main class="workspace">
+    <div class="panel">
+      <div class="panel-header">
+        <span>1. NỘI DUNG VĂN BẢN (DÁN HOẶC UPLOAD FILE WORD)</span>
+        <span style="font-weight:normal; font-size:12px; color:#64748b;">Hỗ trợ .docx &amp; dán trực tiếp</span>
+      </div>
+      
+      <!-- KHUNG UPLOAD FILE WORD (.DOCX) -->
+      <div class="upload-box">
+        <label for="word-file-input">
+          📁 Tải lên file Word (.docx)
+        </label>
+        <input type="file" id="word-file-input" accept=".docx">
+        <span class="file-name-display" id="file-name-display">Chưa chọn file nào</span>
+      </div>
+
+      <div class="editor-area" contenteditable="true" id="input-box" data-placeholder="Hoặc dán toàn bộ văn bản vào đây (Ctrl + V)..."></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span>2. KẾT QUẢ MÃ HTML SẠCH</span>
+        <div>
+          <button class="btn btn-outline" id="btn-toggle-view" style="padding: 4px 10px; font-size: 12px;" type="button">Xem trước giao diện</button>
+        </div>
+      </div>
+      <textarea id="output-code" readonly placeholder="Mã HTML hoàn chỉnh hiển thị tại đây..."></textarea>
+      <div class="editor-area" id="output-preview"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function() {
+  const inputBox = document.getElementById('input-box');
+  const outputCode = document.getElementById('output-code');
+  const outputPreview = document.getElementById('output-preview');
+  const btnProcess = document.getElementById('btn-process');
+  const btnCopy = document.getElementById('btn-copy');
+  const btnClear = document.getElementById('btn-clear');
+  const btnToggleView = document.getElementById('btn-toggle-view');
+  const statCounter = document.getElementById('stat-counter');
+  const includeMeta = document.getElementById('include-meta');
+  const metaFields = document.getElementById('meta-fields');
+  const wordFileInput = document.getElementById('word-file-input');
+  const fileNameDisplay = document.getElementById('file-name-display');
+
+  includeMeta.addEventListener('change', function() {
+    metaFields.style.display = this.checked ? 'grid' : 'none';
+  });
+
+  // Xử lý sự kiện Upload file Word (.docx) bằng Mammoth.js
+  wordFileInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    fileNameDisplay.textContent = file.name;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const arrayBuffer = e.target.result;
+      mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
+        .then(function(result) {
+          inputBox.innerHTML = result.value;
+          statCounter.textContent = 'Đã tải file Word thành công! Nhấn "Chuẩn hóa HTML"';
+          // Tự động chạy chuẩn hóa luôn sau khi load xong file
+          processLegalContent();
+        })
+        .catch(function(err) {
+          alert('Lỗi đọc file Word: ' + err.message);
+        });
+    };
+    reader.readAsArrayBuffer(file);
+  });
+
+  function buildMetadataDiv() {
+    if (!includeMeta.checked) return '';
+    const sohieu = document.getElementById('m-sohieu').value.trim() || 'Đang cập nhật';
+    const loai = document.getElementById('m-loai').value;
+    const ngaybh = document.getElementById('m-ngaybh').value.trim() || 'Đang cập nhật';
+    const ngayhl = document.getElementById('m-ngayhl').value.trim() || 'Đang cập nhật';
+    const ngayhh = document.getElementById('m-ngayhh').value.trim() || 'Chưa xác định';
+    const coquan = document.getElementById('m-coquan').value.trim() || 'Đang cập nhật';
+    const nguoiky = document.getElementById('m-nguoiky').value.trim() || 'Đang cập nhật';
+
+    return `<!-- KHUNG THÔNG TIN VĂN BẢN -->
+<div class="doc-meta-card">
+  <div class="doc-meta-row">
+    <div class="doc-meta-label">Số hiệu:</div>
+    <div class="doc-meta-value"><strong>${sohieu}</strong></div>
+  </div>
+  <div class="doc-meta-row">
+    <div class="doc-meta-label">Loại văn bản:</div>
+    <div class="doc-meta-value">${loai}</div>
+  </div>
+  <div class="doc-meta-row">
+    <div class="doc-meta-label">Ngày ban hành:</div>
+    <div class="doc-meta-value">${ngaybh}</div>
+  </div>
+  <div class="doc-meta-row">
+    <div class="doc-meta-label">Ngày có hiệu lực:</div>
+    <div class="doc-meta-value">${ngayhl}</div>
+  </div>
+  <div class="doc-meta-row">
+    <div class="doc-meta-label">Ngày hết hiệu lực:</div>
+    <div class="doc-meta-value">${ngayhh}</div>
+  </div>
+  <div class="doc-meta-row">
+    <div class="doc-meta-label">Cơ quan ban hành:</div>
+    <div class="doc-meta-value">${coquan}</div>
+  </div>
+  <div class="doc-meta-row">
+    <div class="doc-meta-label">Người ký:</div>
+    <div class="doc-meta-value">${nguoiky}</div>
+  </div>
+</div>\n\n`;
+  }
+
+  function sanitizeInnerContent(node) {
+    let cleanHtml = '';
+    node.childNodes.forEach(child => {
+      if (child.nodeType === 3) {
+        cleanHtml += child.textContent;
+      } else if (child.nodeType === 1) {
+        const tag = child.tagName.toLowerCase();
+        let isBold = tag === 'b' || tag === 'strong' || (child.style && (parseInt(child.style.fontWeight) >= 600 || child.style.fontWeight === 'bold'));
+        let isItalic = tag === 'i' || tag === 'em' || (child.style && child.style.fontStyle === 'italic');
+        let isUnderline = tag === 'u' || (child.style && child.style.textDecoration && child.style.textDecoration.includes('underline'));
+
+        let innerText = sanitizeInnerContent(child);
+        if (isBold) innerText = `<strong>${innerText}</strong>`;
+        if (isItalic) innerText = `<em>${innerText}</em>`;
+        if (isUnderline) innerText = `<u>${innerText}</u>`;
+
+        if (['b', 'strong', 'i', 'em', 'u', 'span', 'font', 'a'].includes(tag)) {
+          cleanHtml += innerText;
+        } else if (tag === 'br') {
+          cleanHtml += '<br/>';
+        } else if (['p', 'div'].includes(tag)) {
+          cleanHtml += (cleanHtml ? '<br/>' : '') + innerText;
+        } else {
+          cleanHtml += innerText;
+        }
+      }
+    });
+    return cleanHtml.replace(/[ \t]+/g, ' ').trim();
+  }
+
+  function cleanTableElement(tableNode) {
+    let tableAlign = '';
+    const styleAlign = tableNode.style.textAlign;
+    const alignAttr = tableNode.getAttribute('align');
+    if (styleAlign) tableAlign = ` style="text-align: ${styleAlign};"`;
+    else if (alignAttr) tableAlign = ` align="${alignAttr}"`;
+
+    let html = `<table${tableAlign}>\n  <tbody>\n`;
+    const rows = tableNode.querySelectorAll('tr');
+    rows.forEach(row => {
+      let rowHtml = '    <tr>\n';
+      const cells = row.querySelectorAll('td, th');
+      cells.forEach(cell => {
+        const tag = cell.tagName.toLowerCase();
+        const colspan = cell.getAttribute('colspan') ? ` colspan="${cell.getAttribute('colspan')}"` : '';
+        const rowspan = cell.getAttribute('rowspan') ? ` rowspan="${cell.getAttribute('rowspan')}"` : '';
+        
+        let cellAlign = '';
+        const cStyle = cell.style.textAlign;
+        const cAlign = cell.getAttribute('align');
+        if (cStyle) cellAlign = ` style="text-align: ${cStyle};"`;
+        else if (cAlign) cellAlign = ` align="${cAlign}"`;
+
+        const cellContent = sanitizeInnerContent(cell);
+        rowHtml += `      <${tag}${colspan}${rowspan}${cellAlign}>${cellContent}</${tag}>\n`;
+      });
+      rowHtml += '    </tr>\n';
+      html += rowHtml;
+    });
+    html += '  </tbody>\n</table>';
+    return html;
+  }
+
+  function processLegalContent() {
+    const rawHtml = inputBox.innerHTML;
+    if (!rawHtml.trim()) {
+      alert('Vui lòng tải lên file Word hoặc dán nội dung văn bản vào cột bên trái trước!');
+      return;
+    }
+
+    const mergeLines = document.getElementById('opt-merge-lines').checked;
+    const boldClause = document.getElementById('opt-bold-clause').checked;
+    const removeHeader = document.getElementById('opt-remove-header').checked;
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = rawHtml.replace(/<!--[\s\S]*?-->/g, '');
+
+    let blocks = [];
+    function extractBlocks(parent) {
+      Array.from(parent.childNodes).forEach(node => {
+        if (node.nodeType === 1) {
+          const tag = node.tagName.toUpperCase();
+          if (tag === 'TABLE') {
+            const tableText = node.textContent.toUpperCase();
+            if (removeHeader && (tableText.includes('CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM') || tableText.includes('ĐỘC LẬP - TỰ DO - HẠNH PHÚC'))) {
+              return;
+            }
+            blocks.push({ type: 'table', content: cleanTableElement(node), align: '' });
+          } else if (['P', 'DIV', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'LI', 'BLOCKQUOTE'].includes(tag)) {
+            const subTables = node.querySelectorAll('table');
+            if (subTables.length > 0) {
+              extractBlocks(node);
+            } else {
+              let align = '';
+              const styleAlign = node.style.textAlign;
+              const alignAttr = node.getAttribute('align');
+              if (styleAlign) align = styleAlign;
+              else if (alignAttr) align = alignAttr;
+
+              const innerHTML = sanitizeInnerContent(node);
+              const textContent = node.textContent.replace(/\s+/g, ' ').trim();
+              if (textContent) {
+                blocks.push({ type: 'text', content: innerHTML, plainText: textContent, align: align });
+              }
+            }
+          } else {
+            extractBlocks(node);
+          }
+        } else if (node.nodeType === 3) {
+          const textContent = node.textContent.replace(/\s+/g, ' ').trim();
+          if (textContent) {
+            blocks.push({ type: 'text', content: textContent, plainText: textContent, align: '' });
+          }
+        }
+      });
+    }
+    extractBlocks(tempDiv);
+
+    if (removeHeader) {
+      blocks = blocks.filter((b, idx) => {
+        if (b.type !== 'text' || idx > 12) return true;
+        const up = b.plainText.toUpperCase();
+        if (up === 'CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM' ||
+            up.includes('ĐỘC LẬP - TỰ DO - HẠNH PHÚC') ||
+            /^[-_]{3,}$/.test(up)) {
+          return false;
+        }
+        return true;
+      });
+    }
+
+    if (mergeLines) {
+      let merged = [];
+      for (let i = 0; i < blocks.length; i++) {
+        let curr = blocks[i];
+        if (curr.type === 'table') {
+          merged.push(curr);
+          continue;
+        }
+        if (merged.length > 0 && merged[merged.length - 1].type === 'text') {
+          let prevText = merged[merged.length - 1].plainText;
+          const isHeadingOrClause = /^(PHẦN|CHƯƠNG|MỤC|TIỂU MỤC|ĐIỀU|\d+\.|[a-zđ]\))\s/i.test(curr.plainText);
+          const prevEndsWithPunctuation = /[.:;?!"]$/.test(prevText);
+          if (!prevEndsWithPunctuation && !isHeadingOrClause && prevText.length > 35) {
+            merged[merged.length - 1].content += ' ' + curr.content;
+            merged[merged.length - 1].plainText += ' ' + curr.plainText;
+            continue;
+          }
+        }
+        merged.push(curr);
+      }
+      blocks = merged;
+    }
+
+    let consolidated = [];
+    for (let i = 0; i < blocks.length; i++) {
+      let curr = blocks[i];
+      if (curr.type === 'text' && /^(CHƯƠNG\s+[IVXLCDM0-9]+|PHẦN\s+(THỨ\s+)?[IVXLCDM0-9]+|MỤC\s+[0-9IVXLCDM]+)$/i.test(curr.plainText)) {
+        if (i + 1 < blocks.length && blocks[i + 1].type === 'text' && blocks[i + 1].plainText.length < 180) {
+          curr.content = curr.content + '. ' + blocks[i + 1].content;
+          curr.plainText = curr.plainText + '. ' + blocks[i + 1].plainText;
+          i++;
+        }
+      }
+      consolidated.push(curr);
+    }
+    blocks = consolidated;
+
+    const hasMuc = blocks.some(b => b.type === 'text' && /^Mục\s+[0-9IVXLCDM]+[\.:]?\s+/i.test(b.plainText));
+
+    let countH2 = 0, countH3 = 0, countH4 = 0;
+    let bodyHtml = '<!-- NỘI DUNG TOÀN VĂN -->\n';
+
+    blocks.forEach(b => {
+      if (b.type === 'table') {
+        bodyHtml += b.content + '\n\n';
+        return;
+      }
+
+      let txt = b.content;
+      let plain = b.plainText;
+      let alignStyle = b.align ? ` style="text-align: ${b.align};"` : '';
+
+      if (/^(PHẦN\s+(THỨ\s+)?[IVXLCDM0-9]+|CHƯƠNG\s+[IVXLCDM0-9]+)([\.: -]\s*|$)/i.test(plain) && plain.length < 220) {
+        countH2++;
+        bodyHtml += `<h2${alignStyle}>${txt}</h2>\n\n`;
+      }
+      else if (/^(MỤC\s+[0-9IVXLCDM]+|TIỂU MỤC\s+[0-9IVXLCDM]+)([\.: -]\s*|$)/i.test(plain) && plain.length < 220) {
+        countH3++;
+        bodyHtml += `<h3${alignStyle}>${txt}</h3>\n\n`;
+      }
+      else if /^Điều\s+[0-9]+[a-z]?[\.: -]\s*/i.test(plain) && plain.length < 260) {
+        if (hasMuc) {
+          countH4++;
+          bodyHtml += `<h4${alignStyle}>${txt}</h4>\n\n`;
+        } else {
+          countH3++;
+          bodyHtml += `<h3${alignStyle}>${txt}</h3>\n\n`;
+        }
+      }
+      else {
+        if (boldClause) {
+          txt = txt.replace(/^(\d+\.\s+|[a-zđ]\)\s+)/i, '<strong>$1</strong>');
+        }
+        bodyHtml += `<p${alignStyle}>${txt}</p>\n`;
+      }
+    });
+
+    const finalHtml = buildMetadataDiv() + bodyHtml;
+    outputCode.value = finalHtml;
+    outputPreview.innerHTML = finalHtml;
+
+    statCounter.textContent = `Đã tạo: ${countH2} Chương (H2) | ${countH3} Mục/Điều (H3) | ${countH4} Điều (H4)`;
+  }
+
+  btnProcess.addEventListener('click', processLegalContent);
+
+  btnCopy.addEventListener('click', function() {
+    if (!outputCode.value) return;
+    outputCode.select();
+    outputCode.setSelectionRange(0, 999999);
+    navigator.clipboard.writeText(outputCode.value).then(() => {
+      const oldText = this.textContent;
+      this.textContent = '✓ Đã sao chép tất cả!';
+      setTimeout(() => { this.textContent = oldText; }, 2000);
+    }).catch(() => {
+      outputCode.select();
+      document.execCommand('copy');
+      const oldText = this.textContent;
+      this.textContent = '✓ Đã sao chép tất cả!';
+      setTimeout(() => { this.textContent = oldText; }, 2000);
+    });
+  });
+
+  btnClear.addEventListener('click', function() {
+    inputBox.innerHTML = '';
+    outputCode.value = '';
+    outputPreview.innerHTML = '';
+    fileNameDisplay.textContent = 'Chưa chọn file nào';
+    wordFileInput.value = '';
+    statCounter.textContent = 'Đã xóa trắng';
+  });
+
+  let isPreview = false;
+  btnToggleView.addEventListener('click', function() {
+    isPreview = !isPreview;
+    if (isPreview) {
+      outputCode.style.display = 'none';
+      outputPreview.style.display = 'block';
+      this.textContent = 'Xem mã HTML';
+    } else {
+      outputCode.style.display = 'block';
+      outputPreview.style.display = 'none';
+      this.textContent = 'Xem trước giao diện';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
