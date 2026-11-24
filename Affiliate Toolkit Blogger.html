@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Affiliate &amp; Shop Link Builder for Blogger</title>
+<style>
+:root{
+  --bg:#f4f6f9;
+  --paper:#ffffff;
+  --ink:#111827;
+  --muted:#64748b;
+  --line:#e5e7eb;
+  --blue:#2563eb;
+  --blue-soft:#eff6ff;
+  --shadow:0 10px 30px rgba(15,23,42,.06);
+  --ico-tiktok:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMSAzNCIgZmlsbD0ibm9uZSI+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBkPSJNMTIuMDA5NiAxMy4wODNWMTEuOTY3OEMxMS40OTkxIDExLjg4MjEgMTAuOTg5MiAxMS44NTQyIDEwLjU2NjEgMTEuODU0MkM0LjgxNDkgMTEuODU0MiAwIDE2LjUxOTQgMCAyMi4zMDVDMCAyNi4xMDMgMS44Mjg4NiAyOS4zNDk4IDQuNjA3NDggMzEuMjcxMkMyLjY3MTM4IDI5LjMyOTEgMS40NzA1NCAyNi42MTEyIDEuNDcwNTQgMjMuNTMzN0MxLjQ3MDU0IDE3Ljc1ODYgNi4yNzA2NyAxMy4wOTU5IDEyLjAwOTYgMTMuMDgzWk0xNS4zMjM4IDBWMjIuNTA0OUMxNS4zMjM4IDI1LjQ1MzIgMTMuMjI3OCAyNy4zNDk5IDEwLjY3ODQgMjcuMzQ5OUM5LjgzMjcyIDI3LjM0OTkgOS4wMzAwMiAyNy4xNSA4LjMzMiAyNi43ODEzQzkuMjE3NTMgMjcuOTI0NCAxMC42MTYxIDI4LjU4MTkgMTIuMTQ5IDI4LjU4MTlDMTQuNjk3NyAyOC41ODE5IDE2Ljc5NDMgMjYuNjg1MiAxNi43OTQzIDIzLjczNDNWMS4yMjg3OEgyMC44MzQyQzIwLjcyNDQgMC44MzY3MTIgMjAuNjMzOCAwLjQyNzExOSAyMC41NjM4IDBIMTUuMzIzMkgxNS4zMjM4Wk0yNC42MTIgNi42Mzc4N0MyNS44OTc2IDcuOTc4MyAyNy41MDEgOC43OTQ4OSAyOS4xMTc0IDkuMTY2MTlWOC4xNjAwNUMyNy41OTg3IDguMDUxIDI2LjAxMDYgNy41NjgwNiAyNC42MTIgNi42Mzc4N1oiIGZpbGw9IiMyRENDRDMiLz48cGF0aCBkPSJNMjQuNjEzOSA2LjYzNjk2QzIzLjM3MDcgNS4zNDQ1NyAyMi40MjI4IDMuNTY0NjkgMjIuMDM3NSAxLjIyODUySDIwLjgzNjdDMjEuNTIxOSAzLjc1NDg4IDIyLjkzMjcgNS41MTcyMyAyNC42MTM5IDYuNjM2OTZaTTI5LjExOTIgOS4xNjUyN1YxMy40MjYxQzI2Ljc4NTYgMTMuNDI2MSAyNC41NzY2IDEyLjk3NjIgMjIuNjMwMiAxMS42NTA3QzI0Ljg5NjQgMTMuOTQxNSAyNy42NDU1IDE0LjY1NzUgMzAuNTg5OCAxNC42NTc1VjkuMzg3OTJDMzAuMTA0MyA5LjM1NDgyIDI5LjYwOTIgOS4yODE0NyAyOS4xMTg2IDkuMTY1MjdIMjkuMTE5MlpNOC4zMzQ1MyAyNi43Nzk3QzcuNzA5MDcgMjUuOTgwNyA3LjMzNjYyIDI0Ljk0NjYgNy4zMzY2MiAyMy43MzI4QzcuMzM2NjIgMjAuMzI2OCA5Ljk3MDc1IDE4LjUyNjIgMTMuNDgyNyAxOC45MDA3VjEzLjE5NjNDMTIuOTcyMiAxMy4xMTA2IDEyLjQ2MjMgMTMuMDgyNyAxMi4wMzY2IDEzLjA4MjdIMTIuMDExNVYxNy42Njk0QzguNDk5NTcgMTcuMjk3NCA1Ljg2NTQ0IDE5LjA5NTUgNS44NjU0NCAyMi41MDRDNS44NjU0NCAyNC40OTY4IDYuODczNjIgMjYuMDA4NiA4LjMzNDUzIDI2Ljc3OTdaTTIxLjE1OTcgMjIuMTMyQzIxLjE1OTcgMjkuMzE4NCAxNS43MjEzIDMzLjEyNjEgMTAuNTk1NiAzMy4xMjYxQzguMzc2OTEgMzMuMTI2MSA2LjMxNTU5IDMyLjQ0ODUgNC42MDkzOCAzMS4yNzAzQzYuNTI1NTcgMzMuMTkyNCA5LjE2MjI3IDM0LjM1NDkgMTIuMDY2MSAzNC4zNTQ5QzE3LjE5MTggMzQuMzU0OSAyMi42MzAyIDMwLjU0NjUgMjIuNjMwMiAyMy4zNjA4VjExLjY1MDdDMjIuMTE5NyAxMS4zMDE1IDIxLjYyOTggMTAuODk0NSAyMS4xNTkxIDEwLjQxOTRWMjIuMTMySDIxLjE1OTdaIiBmaWxsPSIjRjEyMDRBIi8+PHBhdGggZD0iTTEwLjU5MTIgMzMuMTI2MUMxNS43MTY5IDMzLjEyNjEgMjEuMTU1NCAyOS4zMTc4IDIxLjE1NTQgMjIuMTMyVjEwLjQxOTRDMjEuNjI1NCAxMC44OTQ1IDIyLjExNiAxMS4zMDIyIDIyLjYyNjYgMTEuNjUwN0MyNC41NzI5IDEyLjk3NTYgMjYuNzgxMyAxMy40MjYxIDI5LjExNTYgMTMuNDI2MVY5LjE2NTI3QzI3LjQ5OTkgOC43OTMzMyAyNS44OTY0IDcuOTc2NzQgMjQuNjEwMiA2LjYzNjk2QzIyLjkyOSA1LjUxNjU4IDIxLjUxODIgMy43NTQyMyAyMC44MzMgMS4yMjg1MkgxNi43OTMyVjIzLjczMzRDMTYuNzkzMiAyNi42ODQzIDE0LjY5NzIgMjguNTgxIDEyLjE0NzggMjguNTgxQzEwLjYxNDQgMjguNTgxIDkuMjE2MzggMjcuOTIzNSA4LjMzMDg1IDI2Ljc4MDRDNi44Njk5NCAyNi4wMDkyIDUuODYxNzUgMjQuNDk2OCA1Ljg2MTc1IDIyLjUwNDZDNS44NjE3NSAxOS4wOTYxIDguNDk1ODggMTcuMjk4MSAxMi4wMDc4IDE3LjY3VjEzLjA4MzNDNi4yNjk1MiAxMy4wOTU3IDEuNDY4NzUgMTcuNzU4OSAxLjQ2ODc1IDIzLjUzNDFDMS40Njg3NSAyNi42MTE2IDIuNjY5NTggMjkuMzI5NSA0LjYwNTY5IDMxLjI3MTZDNi4zMTE5IDMyLjQ0OTggOC4zNzMyMyAzMy4xMjc0IDEwLjU5MTkgMzMuMTI3NEwxMC41OTEyIDMzLjEyNjFaIiBmaWxsPSIjMTExODI3Ii8+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHJlY3Qgd2lkdGg9IjMxIiBoZWlnaHQ9IjM0IiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9zdmc+");
+  --ico-lazada:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA1NiIgZmlsbD0ibm9uZSI+PGRlZnM+PGNsaXBQYXRoIGlkPSJoIj48cGF0aCBkPSJNMzIgMTYuNUMyOS4yIDEyLjYgMjEuOCA0IDE2LjUgNGMtMi4xIDAtNC4yLjktNiAyTDQuOCA5LjVDMi41IDEwLjkgMS4zIDEzLjUgMS43IDE2LjJsMi42IDE3LjRjLjUgMy40IDIuNSA2LjQgNS41IDguMmwxOS44IDExLjljMS41LjkgMy4zLjkgNC44IDBsMTkuOC0xMS45YzMtMS44IDUtNC44IDUuNS04LjJsMi42LTE3LjRjLjQtMi43LS44LTUuMy0zLjEtNi43TDUzLjUgNmMtMS44LTEuMS0zLjktMi02LTItNS4zIDAtMTIuNyA4LjYtMTUuNSAxMi41WiIvPjwvY2xpcFBhdGg+PGxpbmVhckdyYWRpZW50IGlkPSJ0IiB4MT0iNCIgeTE9IjYiIHgyPSI2MCIgeTI9IjI0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRkY5ODAwIi8+PHN0b3Agb2Zmc2V0PSIuNDgiIHN0b3AtY29sb3I9IiNGRjI5NkQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBMTI1RTgiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ibCIgeDE9IjIiIHkxPSIxNCIgeDI9IjMyIiB5Mj0iNTQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRjZEMDAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGNTEyNkEiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iciIgeDE9IjMyIiB5MT0iMjIiIHgyPSI2MiIgeTI9IjQyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRTUxMjdDIi8+PHN0b3Agb2Zmc2V0PSIuNTUiIHN0b3AtY29sb3I9IiM2QjFGRTIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwRjE0NkQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjaCkiPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI1NiIgZmlsbD0idXJsKCN0KSIvPjxwYXRoIGQ9Ik0wIDEyLjUgMzIgMjQuNVY1NkgwWiIgZmlsbD0idXJsKCNsKSIvPjxwYXRoIGQ9Ik02NCAxMi41IDMyIDI0LjVWNTZoMzJaIiBmaWxsPSJ1cmwoI3IpIi8+PHBhdGggZD0iTTMyIDI0LjUgMTIgNGg0MFoiIGZpbGw9IiNGRjNEN0YiIG9wYWNpdHk9Ii4yOCIvPjwvZz48L3N2Zz4=");
+  --ico-tiki:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MiAzMiIgZmlsbD0ibm9uZSI+PHJlY3QgeD0iMiIgeT0iMyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjYuMiIgcng9IjEuOCIgZmlsbD0iIzBBNjhGRiIvPjxyZWN0IHg9IjEwLjkiIHk9IjMiIHdpZHRoPSI2LjIiIGhlaWdodD0iMjYiIHJ4PSIxLjgiIGZpbGw9IiMwQTY4RkYiLz48cmVjdCB4PSIzMS41IiB5PSIzIiB3aWR0aD0iNi4yIiBoZWlnaHQ9IjI2IiByeD0iMS44IiBmaWxsPSIjMEE2OEZGIi8+PHJlY3QgeD0iNDQuNSIgeT0iMyIgd2lkdGg9IjYuMiIgaGVpZ2h0PSIyNiIgcng9IjEuOCIgZmlsbD0iIzBBNjhGRiIvPjxwYXRoIGQ9Ik01MSAxNi40IDYzLjcgNGMuNy0uNyAxLjctMSAyLjctMWg0LjZjMSAwIDEuNCAxLjIuNyAxLjlMNTkuOCAxNi4ybDEyLjQgMTAuOWMuNy42LjMgMS45LS43IDEuOWgtNC45Yy0xIDAtMi0uNC0yLjctMS4xTDUxIDE2LjRaIiBmaWxsPSIjMEE2OEZGIi8+PHJlY3QgeD0iNzguOCIgeT0iMyIgd2lkdGg9IjYuMiIgaGVpZ2h0PSIyNiIgcng9IjEuOCIgZmlsbD0iIzBBNjhGRiIvPjwvc3ZnPg==");
+  --ico-facebook:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgNTAwIiBmaWxsPSJub25lIj48cGF0aCBmaWxsPSIjMDg2NmZmIiBkPSJtNTAwLDI1MEM1MDAsMTExLjkzLDM4OC4wNywwLDI1MCwwUzAsMTExLjkzLDAsMjUwYzAsMTE3LjI0LDgwLjcyLDIxNS42MiwxODkuNjEsMjQyLjY0di0xNjYuMjRoLTUxLjU1di03Ni40aDUxLjU1di0zMi45MmMwLTg1LjA5LDM4LjUxLTEyNC41MywxMjIuMDUtMTI0LjUzLDE1Ljg0LDAsNDMuMTcsMy4xMSw1NC4zNSw2LjIxdjY5LjI1Yy01LjktLjYyLTE2LjE1LS45My0yOC44OC0uOTMtNDAuOTksMC01Ni44MywxNS41My01Ni44Myw1NS45djI3LjAyaDgxLjY2bC0xNC4wMyw3Ni40aC02Ny42M3YxNzEuNzdjMTIzLjc3LTE0Ljk1LDIxOS43LTEyMC4zNSwyMTkuNy0yNDguMTdaIi8+PC9zdmc+");
+}
+*{box-sizing:border-box}
+html,body{margin:0!important;padding:0!important;width:100%;min-height:100%}
+body{background:var(--bg)!important;color:var(--ink)!important;font:14px/1.55 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif!important}
+header{background:linear-gradient(125deg,#0f172a 0%,#1e293b 55%,#334155 100%);color:#fff;padding:22px 20px}
+.wrap{max-width:1260px;margin:auto;padding:0 16px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand-bar{display:flex;align-items:center;gap:14px}
+.mark{width:44px!important;height:44px!important;display:grid;place-items:center;border-radius:12px;background:#fff;color:#0f172a;font-weight:800;letter-spacing:-.5px;flex:0 0 44px!important;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+h1{font-size:20px;margin:0;line-height:1.25;letter-spacing:-.01em}
+header p{margin:3px 0 0;color:#cbd5e1;font-size:12.5px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1fr);gap:20px;margin:22px auto 40px;align-items:start}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.panelhead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);background:#fcfcfd;flex-wrap:wrap}
+.panelhead h2{font-size:14.5px;margin:0;font-weight:700}
+.panelbody{padding:18px}
+.section{padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.section:last-child{padding:0;margin:0;border:0}
+.section-title{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;margin-bottom:12px;color:#0f172a}
+.num{width:22px;height:22px;border-radius:6px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{min-width:0;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.full{grid-column:1/-1}
+label{display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:5px}
+input,textarea{width:100%!important;max-width:100%;border:1px solid #dbe1ea!important;border-radius:10px!important;padding:10px 12px!important;background:#fff!important;color:var(--ink)!important;font:inherit!important;outline:none;min-width:0;box-sizing:border-box!important;transition:border-color .15s,box-shadow .15s}
+input:focus,textarea:focus{border-color:#60a5fa!important;box-shadow:0 0 0 3px #eff6ff}
+textarea{min-height:68px;resize:vertical}
+.hint{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+.platform-row{display:grid;grid-template-columns:38px minmax(0,1fr) 32px;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:11px;margin-bottom:8px;background:#fff}
+.platform-logo{width:36px!important;height:36px!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:8px;background:#f8fafc;border:1px solid #eef2f6;overflow:hidden!important;padding:5px}
+.platform-logo::before{content:"";display:block;width:24px;height:22px;background-position:center;background-repeat:no-repeat;background-size:contain}
+.platform-logo.af-logo-tiktok::before{background-image:var(--ico-tiktok)}
+.platform-logo.af-logo-lazada::before{background-image:var(--ico-lazada)}
+.platform-logo.af-logo-tiki::before{width:28px;background-image:var(--ico-tiki)}
+.platform-logo.af-logo-facebook::before{background-image:var(--ico-facebook)}
+.platform-row input{font-size:12.5px;padding:8px 10px!important}
+.platform-row input[type=checkbox]{width:17px!important;height:17px!important;padding:0!important;accent-color:var(--blue);justify-self:center;cursor:pointer}
+.product{border:1px solid var(--line);border-radius:12px;padding:13px;margin:10px 0;background:#f8fafc}
+.producthead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:12.5px;font-weight:700;color:#1e293b}
+.remove{border:0;background:#fef2f2;color:#b91c1c;padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer}
+.remove:hover{background:#fee2e2}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+button{border:0;border-radius:9px;padding:10px 14px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;transition:.15s}
+.primary{background:#0f172a;color:#fff}
+.primary:hover{background:#1e293b}
+.secondary{background:#eef2f6;color:#334155}
+.secondary:hover{background:#e2e8f0}
+.ghost-light{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);padding:8px 12px;font-size:12px}
+.ghost-light:hover{background:rgba(255,255,255,.2)}
+.mini-btn{padding:6px 10px;font-size:11.5px;border-radius:7px}
+.vp-tabs{display:inline-flex;background:#eef2f6;padding:3px;border-radius:9px;gap:2px}
+.vp-tab{background:transparent;color:#475569;padding:5px 10px;font-size:11.5px;font-weight:600;border-radius:7px}
+.vp-tab.active{background:#fff;color:#0f172a;box-shadow:0 1px 3px rgba(15,23,42,.1)}
+.preview-wrap{position:sticky;top:14px}
+.preview-stage{background:#eef2f6;padding:12px;display:flex;justify-content:center;overflow-x:auto}
+#previewFrame{width:100%;max-width:100%;min-height:220px;border:0;border-radius:10px;background:#f1f5f9;display:block;transition:width .2s ease}
+.output{width:100%;min-height:190px;background:#0f172a!important;color:#e2e8f0!important;border:0!important;border-radius:10px!important;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace!important;padding:13px!important}
+.code-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.code-meta{display:flex;align-items:center;gap:8px}
+.badge{font-size:11px;font-weight:600;color:#475569;background:#eef2f6;padding:3px 8px;border-radius:99px;font-variant-numeric:tabular-nums}
+.status{font-size:12px;color:#059669;font-weight:600;min-height:18px;margin-top:8px}
+@media(max-width:960px){.layout{grid-template-columns:1fr}.preview-wrap{position:static}}
+@media(max-width:560px){
+  header{padding:18px 14px}
+  .wrap{padding:0 12px}
+  header .wrap{padding:0}
+  .layout{margin-top:14px;gap:14px}
+  .panelbody{padding:14px}
+  .grid{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .panelhead{padding:12px 14px}
+  .preview-stage{padding:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand-bar">
+      <div class="mark">AP</div>
+      <div>
+        <h1>Affiliate Toolkit for Blogger</h1>
+        <p>100% Pure CSS &amp; Base64 SVG · HTML bài viết siêu gọn (0 thẻ ảnh, 0 SVG, 0 font ngoài)</p>
+      </div>
+    </div>
+    <button class="ghost-light" type="button" id="fillSample">Điền mẫu thử</button>
+  </div>
+</header>
+
+<main class="wrap layout">
+  <section class="panel">
+    <div class="panelhead">
+      <h2>Trình thiết lập</h2>
+      <span class="badge">Auto preview</span>
+    </div>
+    <div class="panelbody">
+      <div class="section">
+        <div class="section-title"><span class="num">1</span> Thương hiệu &amp; nội dung</div>
+        <div class="grid">
+          <div class="field"><label for="brand">Tên thương hiệu / cửa hàng</label><input id="brand" placeholder="Ví dụ: MINH LONG"></div>
+          <div class="field"><label for="tagline">Slogan</label><input id="tagline" placeholder="Tinh hoa từ đất, tinh xảo từ người"></div>
+          <div class="field full"><label for="logo">Logo URL (không bắt buộc)</label><input id="logo" placeholder="https://.../logo.png"></div>
+          <div class="field full"><label for="heading">Tiêu đề khung</label><input id="heading" value="Chọn nơi mua hàng"></div>
+          <div class="field full"><label for="description">Mô tả</label><textarea id="description" placeholder="Giới thiệu ngắn sản phẩm hoặc cửa hàng"></textarea></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="num">2</span> Link nền tảng mua hàng</div>
+        <div id="platforms"></div>
+        <div class="hint">Chỉ xuất nút đã bật và có URL hợp lệ (https://). Bỏ trống Logo URL sẽ tự động ẩn vạch ngăn và ô logo thương hiệu.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="num">3</span> Sản phẩm (tùy chọn)</div>
+        <div id="products"></div>
+        <button class="secondary" type="button" id="addProduct">＋ Thêm sản phẩm</button>
+        <div class="hint">Ảnh sản phẩm hiển thị qua biến CSS (không sinh thẻ &lt;img&gt;). Tự động tính % giảm giá.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title"><span class="num">4</span> Thông báo liên kết tiếp thị</div>
+        <div class="field"><textarea id="disclosure">Bài viết có thể chứa liên kết tiếp thị liên kết. Chúng tôi có thể nhận hoa hồng khi bạn mua hàng qua liên kết, không làm tăng giá bạn phải trả.</textarea></div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" type="button" id="copy">Copy HTML Blogger</button>
+        <button class="secondary" type="button" id="download">Tải HTML</button>
+        <button class="secondary" type="button" id="reset">Làm mới</button>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <aside class="preview-wrap">
+    <div class="panel">
+      <div class="panelhead">
+        <h2>Xem trước thực tế</h2>
+        <div class="vp-tabs" role="tablist" aria-label="Chế độ màn hình">
+          <button class="vp-tab active" type="button" data-width="100%">Máy tính</button>
+          <button class="vp-tab" type="button" data-width="375px">Mobile 375px</button>
+          <button class="vp-tab" type="button" data-width="340px">Hẹp 340px</button>
+        </div>
+      </div>
+      <div class="preview-stage">
+        <iframe id="previewFrame" title="Xem trước giao diện Blogger"></iframe>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <div class="panelhead">
+        <h2>Mã xuất ra Blogger</h2>
+        <div class="code-meta">
+          <button class="secondary mini-btn" type="button" id="copyCss">Copy CSS</button>
+          <button class="primary mini-btn" type="button" id="copyCssMin">Copy CSS nén (1 dòng)</button>
+        </div>
+      </div>
+      <div class="panelbody">
+        <div class="code-head">
+          <div class="section-title" style="margin:0">HTML dán vào bài viết</div>
+          <span class="badge" id="htmlSize">0 B</span>
+        </div>
+        <textarea id="output" class="output" readonly spellcheck="false" placeholder="HTML sẽ tự cập nhật ở đây..."></textarea>
+        <p class="hint">100% mã thuần (không chứa thẻ &lt;img&gt; hay &lt;svg&gt;). Dán trực tiếp vào chế độ xem HTML trên Blogger.</p>
+
+        <div style="height:16px"></div>
+
+        <div class="code-head">
+          <div class="section-title" style="margin:0">CSS cho theme gốc (&lt;b:skin&gt;)</div>
+          <span class="badge" id="cssSize">0 KB</span>
+        </div>
+        <textarea id="cssOutput" class="output" readonly spellcheck="false" placeholder="CSS dùng chung cho theme Blogger..."></textarea>
+        <p class="hint">Dán 1 lần vào &lt;b:skin&gt; của theme gốc. Đã tích hợp sẵn 4 icon Base64 SVG (TikTok, Lazada, Tiki, Facebook) và loại bỏ hoàn toàn tài nguyên ngoài.</p>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script>
+const platformData=[
+  {id:'tiktok',name:'TikTok',cssClass:'af-logo-tiktok'},
+  {id:'lazada',name:'Lazada',cssClass:'af-logo-lazada'},
+  {id:'tiki',name:'Tiki',cssClass:'af-logo-tiki'},
+  {id:'facebook',name:'Facebook',cssClass:'af-logo-facebook'}
+];
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function safeURL(s){try{let u=new URL(String(s||'').trim());return ['https:','http:'].includes(u.protocol)?u.href:''}catch{return ''}}
+function cssURL(u){
+  if(!u) return '';
+  const safe=u.replace(/['"\\()]/g,c=>'%'+c.charCodeAt(0).toString(16).toUpperCase()).replace(/&/g,'&amp;');
+  return `url('${safe}')`;
+}
+function fmtBytes(str){
+  const n=new Blob([str]).size;
+  return n<1024?`${n} B`:`${(n/1024).toFixed(2)} KB`;
+}
+function minifyCSS(s){
+  return s
+    .replace(/\/\*[\s\S]*?\*\//g,'')
+    .replace(/\s*\n\s*/g,'')
+    .replace(/\s*([{}:;,])\s*/g,'$1')
+    .replace(/;}/g,'}')
+    .replace(/\s{2,}/g,' ')
+    .trim();
+}
+
+function renderPlatformInputs(){
+  $('platforms').innerHTML=platformData.map(p=>`<div class="platform-row"><span class="platform-logo ${p.cssClass}" aria-hidden="true"></span><input id="url-${p.id}" type="url" placeholder="Link ${p.name}"><input id="enabled-${p.id}" type="checkbox" checked title="Hiển thị ${p.name}"></div>`).join('');
+  platformData.forEach(p=>[$('url-'+p.id),$('enabled-'+p.id)].forEach(el=>el.addEventListener('input',update)));
+}
+
+let productNo=0;
+function addProduct(d={}){
+  productNo++;
+  const box=document.createElement('div');
+  box.className='product';
+  box.innerHTML=`<div class="producthead"><span>Sản phẩm ${productNo}</span><button class="remove" type="button">Xóa</button></div>
+  <div class="grid">
+    <div class="field full"><label>Tên sản phẩm</label><input class="pn" placeholder="Tên sản phẩm" value="${esc(d.name||'')}"></div>
+    <div class="field full"><label>Ảnh URL</label><input class="pi" placeholder="https://..." value="${esc(d.image||'')}"></div>
+    <div class="field"><label>Giá bán</label><input class="pp" placeholder="450.000đ" value="${esc(d.price||'')}"></div>
+    <div class="field"><label>Giá cũ (nếu có)</label><input class="po" placeholder="600.000đ" value="${esc(d.old||'')}"></div>
+    <div class="field full"><label>Link mua sản phẩm</label><input class="pl" placeholder="https://..." value="${esc(d.link||'')}"></div>
+  </div>`;
+  box.querySelector('.remove').onclick=()=>{box.remove();update()};
+  box.querySelectorAll('input').forEach(el=>el.addEventListener('input',update));
+  $('products').append(box);
+  update();
+}
+
+function data(){
+  const platforms=platformData
+    .filter(p=>$('enabled-'+p.id).checked&&safeURL($('url-'+p.id).value))
+    .map(p=>({...p,url:safeURL($('url-'+p.id).value)}));
+  const products=[...document.querySelectorAll('.product')]
+    .map(b=>({
+      name:b.querySelector('.pn').value.trim(),
+      image:safeURL(b.querySelector('.pi').value),
+      price:b.querySelector('.pp').value.trim(),
+      old:b.querySelector('.po').value.trim(),
+      link:safeURL(b.querySelector('.pl').value)
+    }))
+    .filter(p=>p.name);
+  return {
+    brand:$('brand').value.trim(),
+    tagline:$('tagline').value.trim(),
+    logo:safeURL($('logo').value),
+    heading:$('heading').value.trim(),
+    description:$('description').value.trim(),
+    platforms,
+    products,
+    disclosure:$('disclosure').value.trim()
+  };
+}
+
+const affiliateCSS=`.affiliate-box{
+  --af-accent:#d91e26;
+  --af-accent-dark:#b3151c;
+  --af-accent-soft:#fff2f2;
+  --af-ink:#111827;
+  --af-sub:#475569;
+  --af-muted:#64748b;
+  --af-line:#e6e8ee;
+  --af-surface:#f8fafc;
+  position:relative;
+  max-width:620px;
+  width:100%;
+  margin:28px auto;
+  padding:32px 28px 24px;
+  background:#ffffff;
+  border:1px solid var(--af-line);
+  border-radius:16px;
+  box-shadow:0 12px 32px -12px rgba(15,23,42,.08),0 2px 6px rgba(15,23,42,.03);
+  font-family:inherit;
+  color:var(--af-ink);
+  box-sizing:border-box;
+  overflow:hidden;
+  contain:layout style;
+  -webkit-font-smoothing:antialiased;
+}
+.affiliate-box::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--af-accent-dark) 0%,var(--af-accent) 50%,#f43f5e 100%);
+}
+.affiliate-box *,.affiliate-box *::before,.affiliate-box *::after{box-sizing:border-box}
+.affiliate-box .af-brand-logo{
+  display:block;
+  width:160px;
+  max-width:100%;
+  height:52px;
+  margin:0 auto 12px;
+  background-image:var(--af-brand-logo);
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+.affiliate-box .af-brand{
+  text-align:center;
+  font-size:22px;
+  font-weight:700;
+  line-height:1.25;
+  letter-spacing:.05em;
+  color:var(--af-ink);
+  margin:0;
+}
+.affiliate-box .af-tagline{
+  text-align:center;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.6;
+  letter-spacing:.01em;
+  text-transform:none;
+  color:var(--af-muted);
+  margin:6px 0 0;
+}
+.affiliate-box .af-rule{
+  width:36px;
+  height:2.5px;
+  margin:18px auto 22px;
+  background:var(--af-accent);
+  border-radius:99px;
+}
+.affiliate-box .af-heading{
+  text-align:center;
+  font-size:17px;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:-.01em;
+  color:var(--af-ink);
+  margin:0 0 14px!important;
+  padding:0!important;
+  border:0!important;
+}
+.affiliate-box .af-desc{
+  text-align:center;
+  font-size:13.5px;
+  line-height:1.68;
+  color:var(--af-sub);
+  margin:-6px auto 22px!important;
+  max-width:490px;
+  padding:0!important;
+}
+.affiliate-box .af-platforms,.affiliate-box .af-products{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  width:100%;
+}
+.affiliate-box .af-products{margin-top:22px}
+.affiliate-box .af-platform{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  min-width:0;
+  min-height:68px;
+  padding:12px 14px;
+  background:#ffffff;
+  border:1px solid var(--af-line);
+  border-radius:12px;
+  text-decoration:none!important;
+  color:var(--af-ink)!important;
+  transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.affiliate-box .af-platform-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 44px;
+  width:44px;
+  height:44px;
+  padding:7px;
+  border-radius:10px;
+  background:var(--af-surface);
+  border:1px solid #eef1f6;
+  overflow:hidden;
+  transition:background-color .2s ease,border-color .2s ease;
+}
+.affiliate-box .af-platform-logo.af-logo-tiki{padding:5px}
+.affiliate-box .af-platform-logo::before{
+  content:"";
+  display:block;
+  width:100%;
+  height:100%;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+.affiliate-box .af-logo-tiktok::before{
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMSAzNCIgZmlsbD0ibm9uZSI+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBkPSJNMTIuMDA5NiAxMy4wODNWMTEuOTY3OEMxMS40OTkxIDExLjg4MjEgMTAuOTg5MiAxMS44NTQyIDEwLjU2NjEgMTEuODU0MkM0LjgxNDkgMTEuODU0MiAwIDE2LjUxOTQgMCAyMi4zMDVDMCAyNi4xMDMgMS44Mjg4NiAyOS4zNDk4IDQuNjA3NDggMzEuMjcxMkMyLjY3MTM4IDI5LjMyOTEgMS40NzA1NCAyNi42MTEyIDEuNDcwNTQgMjMuNTMzN0MxLjQ3MDU0IDE3Ljc1ODYgNi4yNzA2NyAxMy4wOTU5IDEyLjAwOTYgMTMuMDgzWk0xNS4zMjM4IDBWMjIuNTA0OUMxNS4zMjM4IDI1LjQ1MzIgMTMuMjI3OCAyNy4zNDk5IDEwLjY3ODQgMjcuMzQ5OUM5LjgzMjcyIDI3LjM0OTkgOS4wMzAwMiAyNy4xNSA4LjMzMiAyNi43ODEzQzkuMjE3NTMgMjcuOTI0NCAxMC42MTYxIDI4LjU4MTkgMTIuMTQ5IDI4LjU4MTlDMTQuNjk3NyAyOC41ODE5IDE2Ljc5NDMgMjYuNjg1MiAxNi43OTQzIDIzLjczNDNWMS4yMjg3OEgyMC44MzQyQzIwLjcyNDQgMC44MzY3MTIgMjAuNjMzOCAwLjQyNzExOSAyMC41NjM4IDBIMTUuMzIzMkgxNS4zMjM4Wk0yNC42MTIgNi42Mzc4N0MyNS44OTc2IDcuOTc4MyAyNy41MDEgOC43OTQ4OSAyOS4xMTc0IDkuMTY2MTlWOC4xNjAwNUMyNy41OTg3IDguMDUxIDI2LjAxMDYgNy41NjgwNiAyNC42MTIgNi42Mzc4N1oiIGZpbGw9IiMyRENDRDMiLz48cGF0aCBkPSJNMjQuNjEzOSA2LjYzNjk2QzIzLjM3MDcgNS4zNDQ1NyAyMi40MjI4IDMuNTY0NjkgMjIuMDM3NSAxLjIyODUySDIwLjgzNjdDMjEuNTIxOSAzLjc1NDg4IDIyLjkzMjcgNS41MTcyMyAyNC42MTM5IDYuNjM2OTZaTTI5LjExOTIgOS4xNjUyN1YxMy40MjYxQzI2Ljc4NTYgMTMuNDI2MSAyNC41NzY2IDEyLjk3NjIgMjIuNjMwMiAxMS42NTA3QzI0Ljg5NjQgMTMuOTQxNSAyNy42NDU1IDE0LjY1NzUgMzAuNTg5OCAxNC42NTc1VjkuMzg3OTJDMzAuMTA0MyA5LjM1NDgyIDI5LjYwOTIgOS4yODE0NyAyOS4xMTg2IDkuMTY1MjdIMjkuMTE5MlpNOC4zMzQ1MyAyNi43Nzk3QzcuNzA5MDcgMjUuOTgwNyA3LjMzNjYyIDI0Ljk0NjYgNy4zMzY2MiAyMy43MzI4QzcuMzM2NjIgMjAuMzI2OCA5Ljk3MDc1IDE4LjUyNjIgMTMuNDgyNyAxOC45MDA3VjEzLjE5NjNDMTIuOTcyMiAxMy4xMTA2IDEyLjQ2MjMgMTMuMDgyNyAxMi4wMzY2IDEzLjA4MjdIMTIuMDExNVYxNy42Njk0QzguNDk5NTcgMTcuMjk3NCA1Ljg2NTQ0IDE5LjA5NTUgNS44NjU0NCAyMi41MDRDNS44NjU0NCAyNC40OTY4IDYuODczNjIgMjYuMDA4NiA4LjMzNDUzIDI2Ljc3OTdaTTIxLjE1OTcgMjIuMTMyQzIxLjE1OTcgMjkuMzE4NCAxNS43MjEzIDMzLjEyNjEgMTAuNTk1NiAzMy4xMjYxQzguMzc2OTEgMzMuMTI2MSA2LjMxNTU5IDMyLjQ0ODUgNC42MDkzOCAzMS4yNzAzQzYuNTI1NTcgMzMuMTkyNCA5LjE2MjI3IDM0LjM1NDkgMTIuMDY2MSAzNC4zNTQ5QzE3LjE5MTggMzQuMzU0OSAyMi42MzAyIDMwLjU0NjUgMjIuNjMwMiAyMy4zNjA4VjExLjY1MDdDMjIuMTE5NyAxMS4zMDE1IDIxLjYyOTggMTAuODk0NSAyMS4xNTkxIDEwLjQxOTRWMjIuMTMySDIxLjE1OTdaIiBmaWxsPSIjRjEyMDRBIi8+PHBhdGggZD0iTTEwLjU5MTIgMzMuMTI2MUMxNS43MTY5IDMzLjEyNjEgMjEuMTU1NCAyOS4zMTc4IDIxLjE1NTQgMjIuMTMyVjEwLjQxOTRDMjEuNjI1NCAxMC44OTQ1IDIyLjExNiAxMS4zMDIyIDIyLjYyNjYgMTEuNjUwN0MyNC41NzI5IDEyLjk3NTYgMjYuNzgxMyAxMy40MjYxIDI5LjExNTYgMTMuNDI2MVY5LjE2NTI3QzI3LjQ5OTkgOC43OTMzMyAyNS44OTY0IDcuOTc2NzQgMjQuNjEwMiA2LjYzNjk2QzIyLjkyOSA1LjUxNjU4IDIxLjUxODIgMy43NTQyMyAyMC44MzMgMS4yMjg1MkgxNi43OTMyVjIzLjczMzRDMTYuNzkzMiAyNi42ODQzIDE0LjY5NzIgMjguNTgxIDEyLjE0NzggMjguNTgxQzEwLjYxNDQgMjguNTgxIDkuMjE2MzggMjcuOTIzNSA4LjMzMDg1IDI2Ljc4MDRDNi44Njk5NCAyNi4wMDkyIDUuODYxNzUgMjQuNDk2OCA1Ljg2MTc1IDIyLjUwNDZDNS44NjE3NSAxOS4wOTYxIDguNDk1ODggMTcuMjk4MSAxMi4wMDc4IDE3LjY3VjEzLjA4MzNDNi4yNjk1MiAxMy4wOTU3IDEuNDY4NzUgMTcuNzU4OSAxLjQ2ODc1IDIzLjUzNDFDMS40Njg3NSAyNi42MTE2IDIuNjY5NTggMjkuMzI5NSA0LjYwNTY5IDMxLjI3MTZDNi4zMTE5IDMyLjQ0OTggOC4zNzMyMyAzMy4xMjc0IDEwLjU5MTkgMzMuMTI3NEwxMC41OTEyIDMzLjEyNjFaIiBmaWxsPSIjMTExODI3Ii8+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHJlY3Qgd2lkdGg9IjMxIiBoZWlnaHQ9IjM0IiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9zdmc+");
+}
+.affiliate-box .af-logo-lazada::before{
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA1NiIgZmlsbD0ibm9uZSI+PGRlZnM+PGNsaXBQYXRoIGlkPSJoIj48cGF0aCBkPSJNMzIgMTYuNUMyOS4yIDEyLjYgMjEuOCA0IDE2LjUgNGMtMi4xIDAtNC4yLjktNiAyTDQuOCA5LjVDMi41IDEwLjkgMS4zIDEzLjUgMS43IDE2LjJsMi42IDE3LjRjLjUgMy40IDIuNSA2LjQgNS41IDguMmwxOS44IDExLjljMS41LjkgMy4zLjkgNC44IDBsMTkuOC0xMS45YzMtMS44IDUtNC44IDUuNS04LjJsMi42LTE3LjRjLjQtMi43LS44LTUuMy0zLjEtNi43TDUzLjUgNmMtMS44LTEuMS0zLjktMi02LTItNS4zIDAtMTIuNyA4LjYtMTUuNSAxMi41WiIvPjwvY2xpcFBhdGg+PGxpbmVhckdyYWRpZW50IGlkPSJ0IiB4MT0iNCIgeTE9IjYiIHgyPSI2MCIgeTI9IjI0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRkY5ODAwIi8+PHN0b3Agb2Zmc2V0PSIuNDgiIHN0b3AtY29sb3I9IiNGRjI5NkQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBMTI1RTgiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ibCIgeDE9IjIiIHkxPSIxNCIgeDI9IjMyIiB5Mj0iNTQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRjZEMDAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGNTEyNkEiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iciIgeDE9IjMyIiB5MT0iMjIiIHgyPSI2MiIgeTI9IjQyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRTUxMjdDIi8+PHN0b3Agb2Zmc2V0PSIuNTUiIHN0b3AtY29sb3I9IiM2QjFGRTIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwRjE0NkQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjaCkiPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI1NiIgZmlsbD0idXJsKCN0KSIvPjxwYXRoIGQ9Ik0wIDEyLjUgMzIgMjQuNVY1NkgwWiIgZmlsbD0idXJsKCNsKSIvPjxwYXRoIGQ9Ik02NCAxMi41IDMyIDI0LjVWNTZoMzJaIiBmaWxsPSJ1cmwoI3IpIi8+PHBhdGggZD0iTTMyIDI0LjUgMTIgNGg0MFoiIGZpbGw9IiNGRjNEN0YiIG9wYWNpdHk9Ii4yOCIvPjwvZz48L3N2Zz4=");
+}
+.affiliate-box .af-logo-tiki::before{
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MiAzMiIgZmlsbD0ibm9uZSI+PHJlY3QgeD0iMiIgeT0iMyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjYuMiIgcng9IjEuOCIgZmlsbD0iIzBBNjhGRiIvPjxyZWN0IHg9IjEwLjkiIHk9IjMiIHdpZHRoPSI2LjIiIGhlaWdodD0iMjYiIHJ4PSIxLjgiIGZpbGw9IiMwQTY4RkYiLz48cmVjdCB4PSIzMS41IiB5PSIzIiB3aWR0aD0iNi4yIiBoZWlnaHQ9IjI2IiByeD0iMS44IiBmaWxsPSIjMEE2OEZGIi8+PHJlY3QgeD0iNDQuNSIgeT0iMyIgd2lkdGg9IjYuMiIgaGVpZ2h0PSIyNiIgcng9IjEuOCIgZmlsbD0iIzBBNjhGRiIvPjxwYXRoIGQ9Ik01MSAxNi40IDYzLjcgNGMuNy0uNyAxLjctMSAyLjctMWg0LjZjMSAwIDEuNCAxLjIuNyAxLjlMNTkuOCAxNi4ybDEyLjQgMTAuOWMuNy42LjMgMS45LS43IDEuOWgtNC45Yy0xIDAtMi0uNC0yLjctMS4xTDUxIDE2LjRaIiBmaWxsPSIjMEE2OEZGIi8+PHJlY3QgeD0iNzguOCIgeT0iMyIgd2lkdGg9IjYuMiIgaGVpZ2h0PSIyNiIgcng9IjEuOCIgZmlsbD0iIzBBNjhGRiIvPjwvc3ZnPg==");
+}
+.affiliate-box .af-logo-facebook::before{
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgNTAwIiBmaWxsPSJub25lIj48cGF0aCBmaWxsPSIjMDg2NmZmIiBkPSJtNTAwLDI1MEM1MDAsMTExLjkzLDM4OC4wNywwLDI1MCwwUzAsMTExLjkzLDAsMjUwYzAsMTE3LjI0LDgwLjcyLDIxNS42MiwxODkuNjEsMjQyLjY0di0xNjYuMjRoLTUxLjU1di03Ni40aDUxLjU1di0zMi45MmMwLTg1LjA5LDM4LjUxLTEyNC41MywxMjIuMDUtMTI0LjUzLDE1Ljg0LDAsNDMuMTcsMy4xMSw1NC4zNSw2LjIxdjY5LjI1Yy01LjktLjYyLTE2LjE1LS45My0yOC44OC0uOTMtNDAuOTksMC01Ni44MywxNS41My01Ni44Myw1NS45djI3LjAyaDgxLjY2bC0xNC4wMyw3Ni40aC02Ny42M3YxNzEuNzdjMTIzLjc3LTE0Ljk1LDIxOS43LTEyMC4zNSwyMTkuNy0yNDguMTdaIi8+PC9zdmc+");
+}
+.affiliate-box .af-platform-text{
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  min-width:0;
+  line-height:1.25;
+}
+.affiliate-box .af-platform-text small{
+  font-size:11.5px;
+  font-weight:500;
+  color:var(--af-muted);
+  white-space:nowrap;
+}
+.affiliate-box .af-platform-text b{
+  font-size:15.5px;
+  font-weight:700;
+  color:var(--af-ink);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.affiliate-box .af-divider{
+  flex:0 0 1px;
+  width:1px;
+  height:24px;
+  background:var(--af-line);
+}
+.affiliate-box .af-brand-side{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  height:36px;
+  padding:5px 8px;
+  border-radius:9px;
+  background:var(--af-surface);
+  border:1px solid #eef1f6;
+  transition:background-color .2s ease,border-color .2s ease;
+}
+.affiliate-box .af-brand-side::before{
+  content:"";
+  display:block;
+  width:46px;
+  height:24px;
+  background-image:var(--af-brand-logo);
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+.affiliate-box .af-arrow{
+  display:grid;
+  place-items:center;
+  flex:0 0 32px;
+  width:32px;
+  height:32px;
+  border-radius:9px;
+  background:var(--af-accent-soft);
+  color:var(--af-accent);
+  font-size:14px;
+  font-weight:700;
+  line-height:1;
+  transition:background-color .2s ease,color .2s ease,transform .2s ease;
+}
+.affiliate-box .af-product{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  min-width:0;
+  padding:12px 14px 12px 12px;
+  background:#ffffff;
+  border:1px solid var(--af-line);
+  border-radius:12px;
+  text-decoration:none!important;
+  color:var(--af-ink)!important;
+  transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.affiliate-box a.af-product{cursor:pointer}
+.affiliate-box .af-product-img{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 74px;
+  width:74px;
+  height:74px;
+  padding:5px;
+  background:var(--af-surface);
+  border:1px solid #eef1f6;
+  border-radius:10px;
+  overflow:hidden;
+}
+.affiliate-box .af-product-img::before{
+  content:"";
+  display:block;
+  width:100%;
+  height:100%;
+  background-image:var(--af-img);
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+}
+.affiliate-box .af-product-info{
+  flex:1 1 auto;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.affiliate-box .af-product h4{
+  font-size:14.5px;
+  font-weight:600;
+  line-height:1.42;
+  color:var(--af-ink);
+  margin:0!important;
+  padding:0!important;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.affiliate-box .af-price{
+  font-size:16px;
+  font-weight:700;
+  line-height:1.3;
+  color:var(--af-accent);
+  font-variant-numeric:tabular-nums;
+}
+.affiliate-box .af-price del{
+  font-size:12px;
+  font-weight:400;
+  color:#94a3b8;
+  margin-left:6px;
+  white-space:nowrap;
+}
+.affiliate-box .af-product-side{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:6px;
+  flex:0 0 auto;
+}
+.affiliate-box .af-discount{
+  display:block;
+  padding:3px 8px;
+  background:var(--af-accent-soft);
+  border-radius:6px;
+  color:var(--af-accent);
+  font-size:11.5px;
+  font-weight:700;
+  line-height:1.3;
+  text-align:center;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.affiliate-box .af-product-buy{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  margin:0;
+  padding:10px 16px;
+  background:var(--af-accent);
+  border-radius:9px;
+  color:#ffffff!important;
+  text-decoration:none!important;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.2;
+  white-space:nowrap;
+  transition:background-color .2s ease;
+}
+.affiliate-box .af-disclosure{
+  text-align:center;
+  color:var(--af-muted);
+  font-size:11.5px;
+  line-height:1.68;
+  margin:22px 0 0!important;
+  padding:16px 0 0!important;
+  border-top:1px solid var(--af-line);
+}
+.affiliate-box .af-platform:focus-visible,.affiliate-box a.af-product:focus-visible{
+  outline:2px solid var(--af-accent);
+  outline-offset:2px;
+}
+@media(hover:hover) and (pointer:fine){
+  .affiliate-box .af-platform:hover{
+    border-color:rgba(217,30,38,.45);
+    background:#fffafa;
+    box-shadow:0 6px 18px -8px rgba(217,30,38,.18);
+    transform:translateY(-1px);
+  }
+  .affiliate-box .af-platform:hover .af-platform-logo,
+  .affiliate-box .af-platform:hover .af-brand-side{
+    background:#ffffff;
+    border-color:rgba(217,30,38,.18);
+  }
+  .affiliate-box .af-platform:hover .af-arrow{
+    background:var(--af-accent);
+    color:#ffffff;
+    transform:translate(1px,-1px);
+  }
+  .affiliate-box a.af-product:hover{
+    border-color:rgba(217,30,38,.45);
+    background:#fffafa;
+    box-shadow:0 6px 18px -8px rgba(217,30,38,.18);
+    transform:translateY(-1px);
+  }
+  .affiliate-box a.af-product:hover .af-product-buy{background:var(--af-accent-dark)}
+  .affiliate-box a.af-product:hover .af-discount{background:#ffffff}
+}
+@media(prefers-reduced-motion:reduce){
+  .affiliate-box .af-platform,.affiliate-box .af-platform-logo,.affiliate-box .af-brand-side,.affiliate-box .af-arrow,.affiliate-box .af-product,.affiliate-box .af-product-buy{transition:none;transform:none}
+}
+@media(max-width:480px){
+  .affiliate-box{padding:24px 16px 18px;margin:20px auto;border-radius:14px}
+  .affiliate-box .af-brand-logo{width:132px;height:44px}
+  .affiliate-box .af-brand{font-size:20px}
+  .affiliate-box .af-tagline{font-size:12.5px}
+  .affiliate-box .af-heading{font-size:16px}
+  .affiliate-box .af-platform{padding:10px 12px;gap:10px;min-height:60px;border-radius:11px}
+  .affiliate-box .af-platform-logo{flex:0 0 38px;width:38px;height:38px;padding:6px;border-radius:9px}
+  .affiliate-box .af-platform-logo.af-logo-tiki{padding:4px}
+  .affiliate-box .af-platform-text b{font-size:14.5px}
+  .affiliate-box .af-divider{height:20px}
+  .affiliate-box .af-brand-side{height:32px;padding:4px 6px;border-radius:8px}
+  .affiliate-box .af-brand-side::before{width:38px;height:20px}
+  .affiliate-box .af-arrow{flex:0 0 28px;width:28px;height:28px;font-size:13px;border-radius:8px}
+  .affiliate-box .af-product{gap:11px;padding:10px 12px 10px 10px;border-radius:11px}
+  .affiliate-box .af-product-img{flex:0 0 60px;width:60px;height:60px;border-radius:8px}
+  .affiliate-box .af-product h4{font-size:13.5px}
+  .affiliate-box .af-price{font-size:15px}
+  .affiliate-box .af-product-buy{padding:9px 13px;font-size:12px;border-radius:8px}
+  .affiliate-box .af-discount{font-size:11px;padding:2px 6px}
+}
+@media(max-width:360px){
+  .affiliate-box .af-divider{display:none}
+  .affiliate-box .af-product{flex-wrap:wrap}
+  .affiliate-box .af-product-info{flex:1 1 0}
+  .affiliate-box .af-product-side{flex:1 1 100%;flex-direction:row;align-items:center}
+  .affiliate-box .af-product-buy{flex:1 1 auto}
+}`;
+
+function outputMarkup(d){
+  const num=v=>{const n=parseInt(String(v||'').replace(/[^\d]/g,''),10);return isNaN(n)?0:n};
+
+  const productHTML=d.products.map(p=>{
+    const pr=num(p.price),od=num(p.old),pct=(pr>0&&od>pr)?Math.round((od-pr)/od*100):0;
+    const side=(pct>0?`<span class="af-discount">-${pct}%</span>`:'')+(p.link?`<span class="af-product-buy">Mua ngay</span>`:'');
+    const thumb=p.image?`<span class="af-product-img" style="--af-img:${cssURL(p.image)}" role="img" aria-label="${esc(p.name)}"></span>`:'';
+    const inner=`${thumb}<div class="af-product-info"><h4>${esc(p.name)}</h4>${p.price?`<div class="af-price">${esc(p.price)}${p.old?`<del>${esc(p.old)}</del>`:''}</div>`:''}</div>${side?`<span class="af-product-side">${side}</span>`:''}`;
+    return p.link
+      ? `<a class="af-product" href="${esc(p.link)}" target="_blank" rel="nofollow sponsored noopener noreferrer">${inner}</a>`
+      : `<article class="af-product">${inner}</article>`;
+  }).join('');
+
+  const brandBadge=d.logo
+    ? `<span class="af-divider" aria-hidden="true"></span><span class="af-brand-side" aria-hidden="true"></span>`
+    : '';
+
+  const links=d.platforms.map(p=>`<a class="af-platform" href="${esc(p.url)}" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="af-platform-logo ${p.cssClass}" aria-hidden="true"></span><span class="af-platform-text"><small>Mua tại</small><b>${esc(p.name)}</b></span>${brandBadge}<span class="af-arrow" aria-hidden="true">↗</span></a>`).join('');
+
+  const parts=[];
+  if(d.logo) parts.push(`  <div class="af-brand-logo" role="img" aria-label="${esc(d.brand||'Logo thương hiệu')}"></div>`);
+  if(d.brand) parts.push(`  <div class="af-brand">${esc(d.brand)}</div>`);
+  if(d.tagline) parts.push(`  <div class="af-tagline">${esc(d.tagline)}</div>`);
+  if(d.logo||d.brand||d.tagline) parts.push(`  <div class="af-rule" aria-hidden="true"></div>`);
+  if(d.heading) parts.push(`  <h3 class="af-heading">${esc(d.heading)}</h3>`);
+  if(d.description) parts.push(`  <p class="af-desc">${esc(d.description)}</p>`);
+  if(links) parts.push(`  <div class="af-platforms">${links}</div>`);
+  if(productHTML) parts.push(`  <div class="af-products">${productHTML}</div>`);
+  if(d.disclosure) parts.push(`  <p class="af-disclosure">${esc(d.disclosure)}</p>`);
+
+  const boxStyle=d.logo?` style="--af-brand-logo:${cssURL(d.logo)}"`:'';
+  return `<div class="affiliate-box"${boxStyle}>\n${parts.join('\n')}\n</div>`;
+}
+
+const frame=$('previewFrame');
+let frameRoot=null;
+function initPreviewFrame(){
+  const doc=frame.contentDocument;
+  doc.open();
+  doc.write(`<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;padding:0;background:#f1f5f9;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}#root{padding:4px 12px}.affiliate-box{margin:12px auto}</style><style id="af-css">${affiliateCSS}</style></head><body><div id="root"></div></body></html>`);
+  doc.close();
+  frameRoot=doc.getElementById('root');
+  if('ResizeObserver' in window){
+    new ResizeObserver(syncFrameHeight).observe(doc.body);
+  }
+}
+function syncFrameHeight(){
+  const doc=frame.contentDocument;
+  if(!doc||!doc.body) return;
+  frame.style.height=Math.max(180,doc.body.scrollHeight+8)+'px';
+}
+
+function update(){
+  const d=data(), code=outputMarkup(d), minCss=minifyCSS(affiliateCSS);
+  if(frameRoot){
+    frameRoot.innerHTML=code;
+    requestAnimationFrame(syncFrameHeight);
+  }
+  $('output').value=code;
+  $('cssOutput').value=affiliateCSS;
+  $('htmlSize').textContent=fmtBytes(code);
+  $('cssSize').textContent=`${fmtBytes(affiliateCSS)} (nén: ${fmtBytes(minCss)})`;
+}
+
+async function copyText(text, msg){
+  try{
+    await navigator.clipboard.writeText(text);
+    $('status').textContent=msg;
+  }catch{
+    const tmp=document.createElement('textarea');
+    tmp.value=text;
+    document.body.appendChild(tmp);
+    tmp.select();
+    document.execCommand('copy');
+    tmp.remove();
+    $('status').textContent=msg;
+  }
+}
+
+document.querySelectorAll('.vp-tab').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.vp-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    frame.style.width=btn.dataset.width;
+    setTimeout(syncFrameHeight,220);
+  };
+});
+
+['brand','tagline','logo','heading','description','disclosure'].forEach(id=>$(id).addEventListener('input',update));
+$('addProduct').onclick=()=>addProduct();
+$('copy').onclick=()=>{update();copyText($('output').value,'Đã copy HTML thuần (0 thẻ ảnh, 0 SVG). Dán trực tiếp vào bài viết Blogger.')};
+$('copyCss').onclick=()=>{update();copyText(affiliateCSS,'Đã copy CSS đầy đủ. Dán vào phần <b:skin> của theme gốc Blogger.')};
+$('copyCssMin').onclick=()=>{update();copyText(minifyCSS(affiliateCSS),'Đã copy CSS nén 1 dòng tối ưu dung lượng cho <b:skin> Blogger.')};
+$('download').onclick=()=>{
+  update();
+  const blob=new Blob([$('output').value],{type:'text/html;charset=utf-8'});
+  const u=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=u;a.download='affiliate-blogger-widget.html';a.click();
+  setTimeout(()=>URL.revokeObjectURL(u),1000);
+  $('status').textContent='Đã tải file HTML.';
+};
+$('reset').onclick=()=>{if(confirm('Xóa và khôi phục thiết lập ban đầu?'))location.reload()};
+$('fillSample').onclick=()=>{
+  $('brand').value='MINH LONG';
+  $('tagline').value='Tinh hoa từ đất · Tinh xảo từ người';
+  $('logo').value='';
+  $('heading').value='Gian hàng chính hãng';
+  $('description').value='Chọn nền tảng mua sắm thuận tiện nhất để nhận ưu đãi vận chuyển và bảo hành chính hãng.';
+  $('url-tiktok').value='https://www.tiktok.com/';
+  $('url-lazada').value='https://www.lazada.vn/';
+  $('url-tiki').value='https://tiki.vn/';
+  $('url-facebook').value='https://www.facebook.com/';
+  $('products').innerHTML='';
+  productNo=0;
+  addProduct({
+    name:'Bộ Trà Sứ Cao Cấp Jasmine Trắng 0.7L (Gồm 1 Ấm, 6 Tách, 6 Đĩa)',
+    image:'',
+    price:'680.000đ',
+    old:'850.000đ',
+    link:'https://tiki.vn/'
+  });
+  $('status').textContent='Đã điền mẫu thử. Nhập thêm Logo URL nếu muốn kiểm tra hiển thị cụm logo bên phải.';
+};
+
+initPreviewFrame();
+renderPlatformInputs();
+update();
+</script>
+</body>
+</html>
