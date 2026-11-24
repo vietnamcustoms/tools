@@ -82,7 +82,7 @@
   border:0!important;
 }
 .affiliate-box .af-desc{
-  text-align:center;
+  text-align:justify;
   font-size:13.5px;
   line-height:1.68;
   color:var(--af-sub);
